@@ -26,8 +26,8 @@ export default function Dashboard() {
   }, []);
 
   // Called when user presses Spin
-  async function handleSpin({ betAmount, betColor }) {
-    if (betAmount <= 0) return alert("Enter a valid bet amount");
+  async function handleSpin({ amount, betType, betValue }) {
+    if (amount <= 0) return alert("Enter a valid bet amount");
 
     setLoading(true);
 
@@ -38,7 +38,7 @@ export default function Dashboard() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        body: JSON.stringify({ betAmount, betColor }),
+        body: JSON.stringify({ amount, betType, betValue }),
       });
 
       const data = await res.json();

@@ -1,29 +1,17 @@
-const express = require('express');
-const router = express.Router();
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
 
-const users = require('../controllers/usersController');
-const auth = require('../middleware/auth');
+module.exports = (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ ok: false, error: 'No token provided' });
+    }
 
-// destructure getMyProfile from the controller
-const { getMyProfile } = users;
-
-// MUST BE BEFORE "/:id"
-router.get('/me', auth, getMyProfile);
-
-router.get('/:id', users.getProfile);
-
-router.post('/register', users.register);
-router.post('/login', users.login);
-
-router.patch('/:id/balance', auth, async (req, res, next) => {
-  const { id } = req.params;
-
-  // ensure user can ONLY modify their own balance
-  if (!req.user || req.user.id !== id) {
-    return res.status(403).json({ ok: false, error: 'Forbidden' });
+    const decoded = jwt.verify(token, config.jwtSecret);
+    req.user = { id: decoded.id };
+    next();
+  } catch (err) {
+    return res.status(401).json({ ok: false, error: 'Invalid token' });
   }
-
-  return users.updateBalance(req, res, next);
-});
-
-module.exports = router;
+};

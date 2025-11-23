@@ -10,6 +10,17 @@ function getColor(number) {
   return redNumbers.has(number) ? 'red' : 'black';
 }
 
+// GET /api/spin/recent - Fetch last 20 spins
+router.get('/recent', async (req, res) => {
+  try {
+    const list = await Result.find().sort({ createdAt: -1 }).limit(20);
+    res.json({ ok: true, list });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ ok: false, error: 'Server error' });
+  }
+});
+
 // POST /api/spin (with betting)
 router.post('/', auth, async (req, res) => {
   try {
