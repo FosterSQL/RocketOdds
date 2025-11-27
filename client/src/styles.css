@@ -1,0 +1,38 @@
+:root{
+  --bg:#247248;
+  --card:#0b1220;
+  --accent:#ffcc00;
+  --muted:#9aa4b2;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,Segoe UI,Arial;background:var(--bg);color:#e6eef6;margin:0;padding:24px}
+.app{max-width:900px;margin:0 auto}
+header h1{margin:0;font-size:28px}
+.wheel{display:flex;align-items:center;gap:16px;margin:20px 0}
+.chip{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700}
+.chip.red{background:#c0392b}
+.chip.black{background:#1f2937}
+.chip.green{background:#2ecc71}
+button{padding:12px 18px;border-radius:8px;border:0;background:var(--accent);cursor:pointer}
+.history ul{list-style:none;padding:0;margin:0}
+.history li{display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.history li.red .num{color:#ffdddd}
+.history li.black .num{color:#ddd}
+.history li.green .num{color:#bfffcf}
+
+/* Profile page styles */
+.profile-page{max-width:800px;margin:0 auto;padding:20px}
+.profile-page h2{margin-bottom:30px}
+.profile-sections{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.profile-section{background:rgba(255,255,255,0.05);padding:24px;border-radius:12px}
+.profile-section h3{margin-top:0;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;margin-bottom:6px;font-weight:500}
+.form-group input{width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#e6eef6;font-size:14px}
+.form-group input:focus{outline:none;border-color:var(--accent)}
+.success-message{background:#2ecc71;color:#fff;padding:12px;border-radius:8px;margin-bottom:20px}
+.error-message{background:#e74c3c;color:#fff;padding:12px;border-radius:8px;margin-bottom:20px}
+.danger-zone{border:2px solid #e74c3c!important;background:rgba(231,76,60,0.1)!important}
+.delete-button{background:#e74c3c!important;color:#fff;font-weight:600}
+.delete-button:hover{background:#c0392b!important}
+@media(max-width:768px){.profile-sections{grid-template-columns:1fr}}
