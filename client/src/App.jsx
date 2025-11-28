@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./ProtectedRoute";
+import Home from "./pages/Home";
+import logo from "./images/rocketodds.jpg";
 
 export default function App() {
   const { user, logout } = useAuth();
@@ -14,12 +16,18 @@ export default function App() {
   return (
     <div className="app">
       <header>
-        <h1>RocketOdds</h1>
+        <Link to="/" className="brand-link">
+          <div className="brand">
+            <img src={logo} alt="RocketOdds logo" className="brand-logo" />
+            <h1>RocketOdds</h1>
+          </div>
+        </Link>
         <nav>
           <Link to="/">Home</Link> {" | "}
 
           {user ? (
             <>
+              <Link to="/dashboard">Dashboard</Link> {" | "}
               <Link to="/profile">Profile</Link> {" | "}
               <span style={{ marginLeft: 8 }}>
                 Hi, {user.username} (${user.balance})
@@ -37,25 +45,13 @@ export default function App() {
         </nav>
       </header>
 
-      <main>
+      <main className="content1">
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute> <Profile/> </ProtectedRoute>}/>
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
