@@ -127,6 +127,36 @@ button{padding:12px 18px;border-radius:8px;border:0;background:var(--accent);cur
 
 .dashboard {
   max-width: 900px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  margin: 20px auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #e6eef6;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
 }
+
+/* 3D canvas wrapper — keep the visual consistent with card sections */
+.roulette-3d-container{
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  overflow: hidden;
+  display:block;
+}
+
+/* Betting panel and inputs inside the wheel should match form inputs */
+.wheel .bet-panel input,
+.wheel .bet-panel select{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.35);
+  color: inherit;
+}
+
+.wheel .last{display:flex;align-items:center;gap:12px}
+.wheel .timestamp{opacity:0.8;font-size:12px}
+
+.history h3{margin-top:0}
